@@ -10,7 +10,7 @@ value = 0
 while 1:
     time_stamp = datetime.datetime.now().isoformat()
 
-    request_string = 'http://%s:%s/?tag=%s&value=%s&timestamp=%s'
+    request_string = 'http://%s:%s/?tag=%s&value=%s&time_stamp=%s'
     request_string = request_string % (ip_address,
                                        port,
                                        tag,
