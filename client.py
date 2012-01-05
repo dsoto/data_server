@@ -17,12 +17,12 @@ while 1:
                                        value,
                                        time_stamp)
 
-    print request_string
+    #print request_string
     value += 0.1
     if value > 20:
         value = 0
 
     r = requests.get(request_string)
 
-    time.sleep(15 * 60)
+    time.sleep(10 * 60)
 
