@@ -8,6 +8,9 @@ import sqlite3
 # example of post code at
 # http://webpython.codepoint.net/wsgi_request_parsing_post
 
+db_connection = sqlite3.connect('./database.db')
+db_cursor = db_connection.cursor()
+
 
 tw.quickSetup(file='log_simple_server.log')
 tw.log.info('staring simple_server.py')
