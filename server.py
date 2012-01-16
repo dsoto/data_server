@@ -68,12 +68,19 @@ def app(environ, start_response):
             key = kv[0]
             value = kv[1]
             dd[key] = value
-            query_string = 'insert into logs (tag, time_stamp, value) values (?,?,?)'
-        db_cursor.execute(query_string, (dd['tag'], dd['time_stamp'], dd['value']))
-        db_connection.commit()
 
+        print dd
+
+        query_string = 'select * from logs where tag=? and time_stamp>? and time_stamp<?'
+        result = db_cursor.execute(query_string, (dd['tag'], dd['date_start'], dd['date_end']))
+
+        response = ''
+        for r in result:
+            response += "{time_stamp:" + str(r[0]) + ', value:' + str(r[1]) + '}'
+
+        print response
         start_response('200 OK', [('Content-type', 'text/plain')])
-        return ['%s' % qs]  # something that you can iter
+        return [response]  # something that you can iter
 
 httpd = make_server(server_ip, 8000, app)
 print "Serving on port 8000..."
