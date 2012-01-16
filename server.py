@@ -7,8 +7,8 @@ import sqlite3
 
 #import sqlalchemy
 
-#server_ip = '127.0.0.1'
-server_ip = '50.56.226.226'
+server_ip = '127.0.0.1'
+#server_ip = '50.56.226.226'
 
 # example of post code at
 # http://webpython.codepoint.net/wsgi_request_parsing_post
@@ -74,9 +74,11 @@ def app(environ, start_response):
         query_string = 'select * from logs where tag=? and time_stamp>? and time_stamp<?'
         result = db_cursor.execute(query_string, (dd['tag'], dd['date_start'], dd['date_end']))
 
-        response = ''
+        response = '['
         for r in result:
-            response += "{time_stamp:" + str(r[0]) + ', value:' + str(r[1]) + '}'
+            response += "{time_stamp:" + str(r[0]) + ', value:' + str(r[1]) + '},'
+        response = response[:-1] + ']'
+
 
         print response
         start_response('200 OK', [('Content-type', 'text/plain')])
