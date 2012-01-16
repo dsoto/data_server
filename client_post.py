@@ -9,7 +9,9 @@ import time
 
 ip_address = '50.56.226.226'
 port = '8000'
-ip_address = 'http://127.0.0.1:8000'
+#ip_address = 'http://127.0.0.1:8000'
+url = 'http://' + ip_address + ':' + port
+
 tag = 'sawtooth_post'
 value = 0
 
@@ -25,7 +27,7 @@ while 1:
     if value > 20:
         value = 0
 
-    r = requests.post(ip_address, data=data)
+    r = requests.post(url, data=data)
 
     time.sleep(10)
 
