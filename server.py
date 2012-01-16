@@ -7,8 +7,8 @@ import sqlite3
 
 #import sqlalchemy
 
-server_ip = '127.0.0.1'
-#server_ip = '50.56.226.226'
+#server_ip = '127.0.0.1'
+server_ip = '50.56.226.226'
 
 # example of post code at
 # http://webpython.codepoint.net/wsgi_request_parsing_post
