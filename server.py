@@ -81,7 +81,7 @@ def app(environ, start_response):
 
 
         print response
-        start_response('200 OK', [('Content-type', 'text/plain')])
+        start_response('200 OK', [('Content-type', 'text/plain'),('Access-Control-Allow-Origin','*')])
         return [response]  # something that you can iter
 
 httpd = make_server(server_ip, 8000, app)
