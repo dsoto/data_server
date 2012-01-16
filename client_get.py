@@ -7,8 +7,9 @@ import datetime
 import requests
 import time
 
-ip_address = '50.56.226.226'
+#ip_address = '50.56.226.226'
 port = '8000'
+ip_address = '127.0.0.1'
 tag = 'sawtooth'
 value = 0
 
