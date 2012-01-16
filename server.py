@@ -5,7 +5,7 @@ from wsgiref.simple_server import make_server
 import twiggy as tw
 import sqlite3
 
-import sqlalchemy
+#import sqlalchemy
 
 #server_ip = '127.0.0.1'
 server_ip = '50.56.226.226'
