@@ -13,9 +13,13 @@ db_cursor = db_connection.cursor()
 
 
 tw.quickSetup(file='log_simple_server.log')
-tw.log.info('staring simple_server.py')
+tw.log.info('starting simple_server.py')
 
 def app(environ, start_response):
+
+    # if get, return json blob of data with tag and daterange
+
+    # if post, parse and insert into database
     for key in environ.keys():
         print key, environ[key]
 

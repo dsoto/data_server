@@ -1,3 +1,8 @@
+'''
+this is a client application that posts data to the
+data server
+'''
+
 import datetime
 import requests
 import time
