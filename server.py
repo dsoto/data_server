@@ -76,7 +76,7 @@ def app(environ, start_response):
 
         response = '['
         for r in result:
-            response += '{"time_stamp":' + str(r[0]) + ', "value":' + str(r[1]) + '},'
+            response += '{"time_stamp":' + str(r[0]) + ',"value":' + str(r[1]) + '},'
         response = response[:-1] + ']'
 
 
