@@ -20,8 +20,7 @@ PACKAGES = ['git-core',
             'python-pip',
             'sqlite3',
             'python-sqlalchemy',
-            'python-sqlite',
-            'dtach']
+            'python-sqlite']
 
 PIP_PACKAGES = ['web.py',
                 'twiggy']
