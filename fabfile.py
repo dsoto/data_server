@@ -27,6 +27,7 @@ PIP_PACKAGES = ['web.py',
                 'twiggy']
 
 def bootstrap():
+    upload_key()
     create_directories()
     install_packages()
     deploy_files()
