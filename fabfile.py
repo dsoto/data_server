@@ -1,4 +1,4 @@
-from fabric.api import run, sudo, local, env
+from fabric.api import put, run, sudo, local, env
 
 '''
 to set up server from scratch
@@ -6,8 +6,7 @@ to set up server from scratch
 > fab install_packages
 '''
 
-
-env.hosts = ['108.166.81.171']
+env.hosts = ['108.166.81.194']
 env.user = 'root'
 
 PACKAGES = ['git-core', 'postgresql', 'python-psycopg2', 'python-pip']
@@ -18,7 +17,7 @@ def upload_key():
     # todo: append to file rather than overwrite
     # todo: check if .ssh exists
     sudo('mkdir ~/.ssh')
-    local('scp ~/.ssh/id_rsa.pub root@108.166.81.171:~/.ssh/authorized_keys')
+    put('~/.ssh/id_rsa.pub', '~/.ssh/authorized_keys')
 
 def get_system_info():
     run('uname -s')
