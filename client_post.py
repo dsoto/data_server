@@ -6,10 +6,12 @@ data server
 import datetime
 import requests
 import time
+from config import host_ip
 
-ip_address = '50.56.226.226'
+
+ip_address = host_ip
 port = '8000'
-#ip_address = 'http://127.0.0.1:8000'
+
 url = 'http://' + ip_address + ':' + port
 
 tag = 'sawtooth_post'

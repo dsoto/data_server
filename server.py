@@ -1,14 +1,9 @@
-# import cgi
-# qs = cgi.parse_qs(environ['QUERY_STRING'])
-
 from wsgiref.simple_server import make_server
 import twiggy as tw
 import sqlite3
+from config import host_ip
 
-#import sqlalchemy
-
-#server_ip = '127.0.0.1'
-server_ip = '50.56.226.226'
+server_ip = host_ip
 
 # example of post code at
 # http://webpython.codepoint.net/wsgi_request_parsing_post

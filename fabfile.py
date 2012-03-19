@@ -1,11 +1,10 @@
 from fabric.api import put, run, sudo, local, env, cd
+from config import host_ip
 
 '''
 to set up server from scratch
 > fab upload_key
-> fab install_packages
-> fab deploy_files
-
+> fab bootstrap
 '''
 
 '''
@@ -14,23 +13,31 @@ put in apache config files
 '''
 
 
-env.hosts = ['108.166.81.194']
+env.hosts = [host_ip]
 env.user = 'root'
 
 PACKAGES = ['git-core',
-            'postgresql',
-            'python-psycopg2',
             'python-pip',
             'sqlite3',
             'python-sqlalchemy',
-            'python-sqlite']
+            'python-sqlite',
+            'dtach']
 
-PIP_PACKAGES = ['web.py']
+PIP_PACKAGES = ['web.py',
+                'twiggy']
+
+def bootstrap():
+    create_directories()
+    install_packages()
+    deploy_files()
+    create_database()
+
+def create_directories():
+    run('mkdir ./data_server')
 
 def upload_key():
     # todo: append to file rather than overwrite
-    # todo: check if .ssh exists
-    sudo('mkdir ~/.ssh')
+    run('mkdir ~/.ssh')
     put('~/.ssh/id_rsa.pub', '~/.ssh/authorized_keys')
 
 def get_system_info():
@@ -46,7 +53,6 @@ def install_packages():
 def deploy_files():
     local('tar cvf deploy-files.tar *')
     put('deploy-files.tar', '~/')
-    run('mkdir ./data_server')
     sudo('tar xvf deploy-files.tar -C ./data_server/')
 
 def create_database():
@@ -54,7 +60,11 @@ def create_database():
         sudo('sqlite3 database.db < create_table.sql')
 
 def run_server():
-    pass
+    # todo: figure this shit out
+    #run('bash ~/data_server/init.sh')
+    #run('nohup python server.py >& /dev/null < /dev/null &')
+    #run('screen -d -m "python server.py"')
+    run('dtach /tmp/dtachsocket -z python server.py')
 
 def stop_server():
     pass
