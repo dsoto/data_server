@@ -31,5 +31,5 @@ while 1:
 
     r = requests.post(url, data=data)
 
-    time.sleep(10)
+    time.sleep(60 * 20)
 
