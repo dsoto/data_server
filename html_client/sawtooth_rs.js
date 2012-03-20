@@ -134,8 +134,8 @@ jQuery.getJSON(
         vrules.append("svg:line")
             // axis has different stroke in css
             .attr("class", "axis")
-            .attr("x1", x(d3.min(times)))
-            .attr("x2", x(d3.min(times)))
+            .attr("x1", x(date_start))
+            .attr("x2", x(date_start))
             .attr("y1", y(yrange_min))
             .attr("y2", y(yrange_max));
 
@@ -155,16 +155,16 @@ jQuery.getJSON(
 
         // horizontal grid lines
          hrules.append("svg:line")
-             .attr("x1", x(d3.min(times)))
-             .attr("x2", x(d3.max(times)))
+             .attr("x1", x(date_start))
+             .attr("x2", x(date_end))
              .attr("y1", y)
              .attr("y2", y);
 
         // horizontal axis line
         hrules.append("svg:line")
             .attr("class", "axis")
-            .attr("x1", x(d3.min(times)))
-            .attr("x2", x(d3.max(times)))
+            .attr("x1", x(date_start))
+            .attr("x2", x(date_end))
             .attr("y1", y(yrange_min))
             .attr("y2", y(yrange_min));
 
