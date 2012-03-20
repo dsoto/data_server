@@ -4,7 +4,7 @@ var now = new Date();
 var date_end = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 date_end.setDate(date_end.getDate() + 1);
 var date_start = new Date(date_end);
-date_start.setDate(date_start.getDate() - 4);
+date_start.setDate(date_start.getDate() - 1);
 console.log(date_start);
 // these seem to be actual date objects
 
@@ -33,40 +33,52 @@ jQuery.getJSON(
         var times = new Array();
         var ydata = new Array();
         for (i in data) {
+            /*
             document.write(data[i].time_stamp);
             document.write('<br>');
             document.write(data[i].value);
             document.write('<br>');
+            */
+            //times[i] = data[i].time_stamp;
+            ydata[i] = data[i].value;
+            times[i] = new Date(data[i].time_stamp);
+            data[i].time_stamp = new Date(data[i].time_stamp);
             /*
             data[i].value = data[i].value / 4096.0 * 1.8 * 100;
             // date object
-            //times[i] = new Date(data[i].time_stamp);
-            times[i] = data[i].time_stamp;
+
+
             //data[i].time_stamp = +data[i].time_stamp;
-            ydata[i] = data[i].d;
+
             console.log(data[i].time_stamp);
             */
          }
-         });
-         /*
-        console.log(times);
-         var range_round = 1,
+              //  console.log(ydata);
+                //console.log(times);
+
+
+
+             var range_round = 1,
              yrange_max = Math.ceil(d3.max(ydata) / range_round) * range_round,
              yrange_min = Math.floor(d3.min(ydata) / range_round) * range_round,
              w = 1000,
              h = 500,
              p = 50,
              x = d3.time.scale()
-                        .domain([d3.min(times),d3.max(times)])
-                        //.domain([date_start, date_end])
+                        //.domain([d3.min(times),d3.max(times)])
+                        .domain([date_start, date_end])
+                        //.domain([d3.time.format.iso(date_start), d3.time.format.iso(date_end)])
                         .range([0,w]),
              y = d3.scale.linear()
                          .domain([yrange_min, yrange_max])
                          .range([h,0]);
 
+        console.log(x(date_end))
         for (i in data){
-            console.log(x(data[i].time_stamp));
+            console.log(times[i]);
+            console.log(x(times[i]));
         }
+
 
          // create axes
          var vis = d3.select("#graph")
@@ -84,6 +96,7 @@ jQuery.getJSON(
              // d is some magic that iterates over the d3values object
             .x( function(d) { return x(d.time_stamp);} )
             .y( function(d) { return y(d.value);} ));
+
 
         // data points as circles
         vis.selectAll("circle.line")
@@ -157,9 +170,11 @@ jQuery.getJSON(
 
 
 
+/*
 
 
     }).fail(function(){
         console.log(this, arguments);
     })
 */
+         });
