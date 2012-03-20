@@ -3,7 +3,6 @@ from config import host_ip
 
 '''
 to set up server from scratch
-> fab upload_key
 > fab bootstrap
 '''
 
