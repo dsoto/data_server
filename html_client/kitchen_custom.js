@@ -23,7 +23,7 @@ var url = "http://108.166.92.185:8000?"
         + "&date_end=" + d3.time.format.iso(date_end)
         + "&tag=kitchen";
 
-console.log(url);
+//console.log(url);
 
 
 jQuery.getJSON(
@@ -40,11 +40,12 @@ jQuery.getJSON(
             document.write('<br>');
             */
             //times[i] = data[i].time_stamp;
-            ydata[i] = data[i].value;
+            ydata[i] = data[i].value / 4096.0 * 1.8 * 100;
             times[i] = new Date(data[i].time_stamp);
             data[i].time_stamp = new Date(data[i].time_stamp);
-            /*
             data[i].value = data[i].value / 4096.0 * 1.8 * 100;
+            /*
+
             // date object
 
 
@@ -73,10 +74,10 @@ jQuery.getJSON(
                          .domain([yrange_min, yrange_max])
                          .range([h,0]);
 
-        console.log(x(date_end))
+        //console.log(x(date_end))
         for (i in data){
-            console.log(times[i]);
-            console.log(x(times[i]));
+            //console.log(times[i]);
+            //console.log(x(times[i]));
         }
 
 
