@@ -2,6 +2,7 @@ from wsgiref.simple_server import make_server
 import twiggy as tw
 import sqlite3
 from config import host_ip
+import datetime as dt
 
 server_ip = host_ip
 
@@ -43,6 +44,8 @@ def app(environ, start_response):
             key = kv[0]
             value = kv[1]
             dd[key] = value
+
+        dd['time_stamp'] = dt.now().isoformat()
 
         query_string = 'insert into logs (tag, time_stamp, value) values (?,?,?)'
         db_cursor.execute(query_string, (dd['tag'], dd['time_stamp'], dd['value']))
